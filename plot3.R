@@ -1,0 +1,13 @@
+setwd("/Users/manikhanuja/Documents/R Workspace/ExploratoryAnalysis/CourseProject1")
+elecData <- read.csv("household_power_consumption.txt", sep = ";" , blank.lines.skip = TRUE, na.strings = "?")
+electData <- elecData[which(elecData$Date == '1/2/2007' | elecData$Date == '2/2/2007'), ]
+datetime <- strptime(paste(electData$Date, electData$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
+sub_metering_1 <- as.numeric(electData$Sub_metering_1)
+sub_metering_2 <- as.numeric(electData$Sub_metering_2)
+sub_metering_3 <- as.numeric(electData$Sub_metering_3)
+plot(datetime, sub_metering_1, type = 'l', ylab="Engery submetering")
+lines(datetime, sub_metering_2, type = 'l', color = red)
+lines(datetime, sub_metering_3, type = 'l', color = blue)
+dev.off()
+setwd("/Users/manikhanuja/Documents/github/ExData_Plotting1/")
+png("plot3.png", width=480, height=480)
